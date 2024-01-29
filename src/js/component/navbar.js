@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AddContact } from "../views/addContact";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">Home</span>
+		<nav className="navbar navbar-container">
+			<Link to="/" style={{ color: "transparent" }}>
+				<h3>Contact List</h3>
 			</Link>
-
 			<div className="ml-auto">
-				<Link to="/contacts">
-					<button className="btn btn-primary">Contacts list</button>
+				<Link to="/AddContact" className="btn btn-secondary navbar-button">
+					Add Contact
 				</Link>
 			</div>
 		</nav>

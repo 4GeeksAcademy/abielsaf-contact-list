@@ -1,73 +1,140 @@
+import { resolvePath } from "react-router";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			contacts: [
+			demo: [
 				{
-					"id": "1",
-					"full_name": "Dave Bradley",
-					"email": "dave@gmail.com",
-					"agenda_slug": "my_super_agenda",
-					"address": "47568 NW 34ST, 33434 FL, USA",
-					"phone": "7864445566"
+					title: "FIRST",
+					background: "white",
+					initial: "white"
 				},
 				{
-					"id": "2",
-					"full_name": "Dave Bradley",
-					"email": "dave@gmail.com",
-					"agenda_slug": "my_super_agenda",
-					"address": "47568 NW 34ST, 33434 FL, USA",
-					"phone": "7864445566"
-				},
-				{
-					"id": "3",
-					"full_name": "Dave Bradley",
-					"email": "dave@gmail.com",
-					"agenda_slug": "my_super_agenda",
-					"address": "47568 NW 34ST, 33434 FL, USA",
-					"phone": "7864445566"
-				},
-				{
-					"id": "4",
-					"full_name": "Dave Bradley",
-					"email": "dave@gmail.com",
-					"agenda_slug": "my_super_agenda",
-					"address": "47568 NW 34ST, 33434 FL, USA",
-					"phone": "7864445566"
+					title: "SECOND",
+					background: "white",
+					initial: "white"
 				}
-			]
+			],
+			contacts: [],
+			
 		},
 		actions: {
-			getAllContacts: () => {
-				fetch("https://playground.4geeks.com/apis/fake/contact/agenda").then(data => data.json())
-					.then(data => data);
+			// Use getActions to call a function within a fuction
+			exampleFunction: () => {
+				getActions().changeColor(0, "green");
 			},
-			createContact: () => {
-				// mando al servidor
+			loadSomeData: () => {
+				/**
+					fetch().then().then(data => setStore({ "foo": data.bar }))
+				*/
 			},
-			addContact: () => { },
-			updateContact: () => {
-				// actualizar servidor....
-				getStore();
+			changeColor: (index, color) => {
+				//get the store
+				const store = getStore();
+
+				//we have to loop the entire demo array to look for the respective index
+				//and change its color
+				const demo = store.demo.map((elm, i) => {
+					if (i === index) elm.background = color;
+					return elm;
+				});
+
+				//reset the global store
+				setStore({ demo: demo });
 			},
-			fetchDeleteContact: (id) => { return console.log(`borrando del server el contact con id ${id}`) },
-			deleteContact: (id) => {
-				const prevStore = getStore();
 
-				const actions = getActions();
+			
+			getContacts: () => {
 
-				const newContacts = prevStore.contacts.filter(contact => contact.id !== id);
+				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/abielsaf")
+					.then(resp => {
+						if (!resp.ok) throw Error(resp.statusText);
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data);
 
+						// Set the retrieved contacts data in the store
+						setStore({ contacts: data });
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
 
-				const newStore = {
-					...prevStore,
-					contacts: newContacts
-				}
+			addContacts: (contactData) => {
 
-				setStore(newStore);
-				actions.fetchDeleteContact(id);
-			}
-		}
-	};
+				const url = "https://playground.4geeks.com/apis/fake/contact/";
+				const request = {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(contactData)
+				};
+
+				fetch(url, request)
+					.then(resp => {
+						if (!resp.ok) throw Error(resp.statusText);
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data);
+						getActions().getContacts();
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+
+			deleteContacts: (id) => {
+				const url = `https://playground.4geeks.com/apis/fake/contact/${id}`;
+				const request = {
+					method: "DELETE",
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					
+				};
+
+				fetch(url, request)
+					.then(resp => {
+						if (!resp.ok) throw Error(resp.statusText);
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data);
+						getActions().getContacts();
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			
+			editContact: (id, contactData) => {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(contactData),
+				})
+				.then(resp => {
+					if (!resp.ok) throw Error(resp.statusText);
+						return resp.json();
+				})
+				.then(data => {
+					console.log(data);
+					getActions().getContacts();
+				})
+				.catch(error => {
+					console.error("Error", error);
+				});
+			},
+			
+		},
+	}
 };
+
 
 export default getState;

@@ -1,0 +1,166 @@
+body {
+    width: 900px;
+    margin: auto;
+    background-image: url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_52683-66443.jpg?w=1380&t=st=1706556639~exp=1706557239~hmac=bf1ccf82c7e3c8dea67a3e9b03d58feae95a45e0dcbd9eee1657a2172d597340);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+
+    0%,
+    100% {
+        background-position: 100% 100%;
+    }
+
+    50% {
+        background-position: 0% 0%;
+    }
+}
+
+
+.navbar-container {
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    border-image: radial-gradient(ellipse at center, #c0c0c0 0%, #d3d3d3 20%, #a9a9a9 50%, #8f8f8f 80%, transparent 110%);
+    border-image-slice: 1;
+    box-shadow: 0 4px 8px rgba(39, 39, 39, 0.15), 0 6px 20px rgba(39, 39, 39, 0.25);
+}
+
+h3 {
+    color: #c0c0c0;
+    font-size: 24px;
+}
+
+.navbar-button {
+    background: radial-gradient(ellipse farthest-corner at right bottom, #c0c0c0 0%, #d3d3d3 8%, #a9a9a9 25%, #8f8f8f 40%, transparent 80%),
+        radial-gradient(ellipse farthest-corner at left top, #e5e5e5 0%, #f2f2f2 8%, #bdbdbd 25%, #9e9e9e 62.5%, #9e9e9e 100%);
+}
+
+/* Card */
+
+.contact-card-border {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    border-image: radial-gradient(ellipse at center, #c0c0c0 0%, #d3d3d3 20%, #a9a9a9 50%, #8f8f8f 80%, transparent 110%);
+    border-image-slice: 1;
+    box-shadow: 0 4px 8px rgba(39, 39, 39, 0.15), 0 6px 20px rgba(39, 39, 39, 0.25);
+}
+
+.icon-button {
+    padding: 5px;
+    font-size: 14px;
+    border-color: transparent;
+    color: white;
+}
+
+.icons {
+    color: #c0c0c0;
+
+
+}
+
+.icons-margin-left {
+    margin-left: 10px;
+}
+
+.text-margin-left {
+    margin-left: 20px;
+}
+
+
+.image-circle {
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border-top: 2px solid #c0c0c0;
+    border-right: 2px solid #e5e5e5;
+    border-left: 2px solid #a9a9a9;
+    border-bottom: 2px solid #8f8f8f;
+    padding: 0px;
+    animation: spin 10s infinite linear;
+}
+
+
+
+.image-circle img {
+    justify-content: center;
+    animation: spin 10s infinite reverse linear;
+    width: 100%;
+    border-radius: 50%;
+}
+
+
+@keyframes spin {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+
+h5 {
+
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #C0C0C0;
+    text-align: end;
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+/* Form */
+
+.contact-form {
+    width: 100%;
+    padding: 20px;
+    border: 2px solid transparent;
+    border-width: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-top: 20px;
+    border-image: radial-gradient(ellipse at center, #c0c0c0 0%, #d3d3d3 20%, #a9a9a9 50%, #8f8f8f 80%, transparent 110%);
+    border-image-slice: 1;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid transparent;
+    border-width: 2px;
+    border-image: radial-gradient(ellipse at center, #c0c0c0 0%, #d3d3d3 20%, #a9a9a9 50%, #8f8f8f 80%, transparent 110%);
+    border-image-slice: 1;
+    border-radius: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #c0c0c0 0%, #d3d3d3 8%, #a9a9a9 25%, #8f8f8f 40%, transparent 80%),
+        radial-gradient(ellipse farthest-corner at left top, #e5e5e5 0%, #f2f2f2 8%, #bdbdbd 25%, #9e9e9e 62.5%, #9e9e9e 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
