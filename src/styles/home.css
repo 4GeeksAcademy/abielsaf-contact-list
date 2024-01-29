@@ -7,6 +7,9 @@ body {
     background-attachment: fixed;
     min-height: 100vh;
     animation: moveBackground 20s linear infinite;
+    font-family: "Gill Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 @keyframes moveBackground {
@@ -107,7 +110,7 @@ h3 {
 
 h5 {
 
-    font-family: "Satisfy", cursive;
+    font-family: "Gill Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: #C0C0C0;
